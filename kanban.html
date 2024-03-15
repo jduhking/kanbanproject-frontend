@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html class="sl-theme-dark">
+    <head>
+        <title>Kanban project</title>
+        <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.14.0/cdn/themes/dark.css"
+        />
+        <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.14.0/cdn/shoelace-autoloader.js"></script>
+        <meta name="color-scheme" content="light dark">
+    </head>
+    <body>
+        <style>
+            .html {
+                color-scheme: light dark;
+            }
+            .card-header {
+              width: 300px;
+              
+            }
+          
+            .card-header [slot='header'] {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            }
+
+            .card-header::part(base) {
+                background-color: #161A1D;
+                height: 100%
+            }
+          
+            .card-header h3 {
+              margin: 0;
+            }
+           
+            .create-button::part(base) {
+                background-color: #161A1D;
+                color: white;
+            }
+
+            .card-basic {
+                width: 100%;
+            }
+
+            .card-basic::part(base) {
+                background-color: #22272B;
+                color: white;
+            }
+
+       
+          </style>
+          
+        <div class="p-10 h-full ">
+            <h1 class="text-2xl mb-10">Kanban Board</h1>
+                <div class="flex flex-row justify-evenly">
+                    <sl-card class="card-header">
+                        <div slot="header" class="sticky top-0">To Do</div>
+                        <ol id="todo-list" hx-get="http://127.0.0.1:5000/todos" hx-trigger="load"></ol>
+                        <div slot="footer">
+                            <sl-button variant="neutral" class="create-button" style="flex:1;display:flex;align-items:flex-start;"><sl-icon slot="prefix" name="plus" style="font-size:20px;"></sl-icon>Create Job</sl-button>
+                        </div>
+                    </sl-card>
+                    <sl-card class="card-header">
+                        <div slot="header" class="sticky top-0">In Progress</div>
+                        <ol id="progress-list" hx-get="http://127.0.0.1:5000/" hx-trigger="load"></ol>
+                        <div slot="footer">
+                            <sl-button variant="neutral" class="create-button" style="flex:1;display:flex;align-items:flex-start;"><sl-icon slot="prefix" name="plus" style="font-size:20px;"></sl-icon>Create Job</sl-button>
+                        </div>
+                    </sl-card>
+                    <sl-card class="card-header">
+                        <div slot="header" class="sticky top-0">Done</div>
+                        <ol id="done-list" hx-get="http://127.0.0.1:5000/" hx-trigger="load"></ol>
+                        <div slot="footer">
+                            <sl-button variant="neutral" class="create-button" style="flex:1;display:flex;align-items:flex-start;"><sl-icon slot="prefix" name="plus" style="font-size:20px;"></sl-icon>Create Job</sl-button>
+                        </div>
+                    </sl-card>
+                </div>
+        </div>
+      
+    </body>
+</html>
